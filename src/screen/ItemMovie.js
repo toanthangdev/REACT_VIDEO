@@ -4,15 +4,16 @@ import {
   ImageBackground,
   StyleSheet,
   TouchableOpacity,
-  Linking,
 } from "react-native"
-import React from "react"
+import YoutubePlayer from "react-native-youtube-iframe"
+import React, { useState } from "react"
 import FontAwesome from "@expo/vector-icons/FontAwesome"
 import { AntDesign } from "@expo/vector-icons"
 import { Feather } from "@expo/vector-icons"
 
 const ItemMovie = ({ item }) => {
-  return (
+  const [playing, setPlaying] = useState(false)
+  return !playing ? (
     <ImageBackground
       style={styles.imageBackground}
       imageStyle={{ opacity: 0.5 }}
@@ -32,12 +33,12 @@ const ItemMovie = ({ item }) => {
         <View style={{ alignItems: "center" }}>
           <TouchableOpacity
             onPress={() => {
-              Linking.openURL(item.url)
+              setPlaying(true)
             }}
             style={{
               width: 50,
               height: 50,
-              borderRadius: "100%",
+              borderRadius: 100,
               backgroundColor: "#f83960",
               justifyContent: "center",
               alignItems: "center",
@@ -65,7 +66,7 @@ const ItemMovie = ({ item }) => {
           style={{
             width: 35,
             height: 35,
-            borderRadius: "100%",
+            borderRadius: 100,
             borderColor: "#fff",
             backgroundColor: "rgba(255, 255, 255,0.05)",
             marginRight: 10,
@@ -79,7 +80,7 @@ const ItemMovie = ({ item }) => {
           style={{
             width: 35,
             height: 35,
-            borderRadius: "100%",
+            borderRadius: 100,
             borderColor: "#fff",
             backgroundColor: "rgba(255, 255, 255,0.05)",
             justifyContent: "center",
@@ -90,6 +91,8 @@ const ItemMovie = ({ item }) => {
         </TouchableOpacity>
       </View>
     </ImageBackground>
+  ) : (
+    <YoutubePlayer height={230} play={playing} videoId={item.videoId} />
   )
 }
 
@@ -99,7 +102,7 @@ const styles = StyleSheet.create({
   imageBackground: {
     marginTop: 20,
     overflow: "hidden",
-    borderRadius: "10%",
+    borderRadius: 10,
     padding: 20,
     height: 230,
     justifyContent: "space-between",

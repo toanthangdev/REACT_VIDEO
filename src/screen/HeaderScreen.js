@@ -24,7 +24,7 @@ const HeaderScreen = () => {
           style={{
             width: 30,
             height: 30,
-            borderRadius: "100%",
+            borderRadius: 100,
             marginRight: 20,
           }}
           source={{
@@ -46,7 +46,7 @@ const HeaderScreen = () => {
           placeholder="Tìm kiếm video"
           style={{
             backgroundColor: "rgba(255,255,255,0.8)",
-            borderRadius: "20%",
+            borderRadius: 20,
             height: 40,
             paddingHorizontal: 40,
           }}

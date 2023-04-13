@@ -6,12 +6,15 @@ import {
   Text,
   View,
 } from "react-native"
+import React, { useState, useCallback, useRef } from "react";
 import ItemMovie from "./src/screen/ItemMovie"
 import HeaderScreen from "./src/screen/HeaderScreen"
 
 const dataAPI = require("./youtube-api.json")
 
 export default function App() {
+  const [playing, setPlaying] = useState(false);
+
   return (
     <SafeAreaView style={styles.container}>
       <HeaderScreen />
